@@ -21,6 +21,7 @@ import SignUpStack from 'navigators/SignUp';
 import UnlockStack from 'navigators/Unlock';
 import React, { useEffect, useRef } from 'react';
 import RNBootSplash from 'react-native-bootsplash';
+import NfcManager from 'react-native-nfc-manager';
 import Orientation from 'react-native-orientation-locker';
 import { ConnectedProps, connect } from 'react-redux';
 import Modal from 'screens/Modal';
@@ -58,6 +59,13 @@ const App = ({
   getSettings,
 }: PropsFromRedux) => {
   let navigationRef: React.MutableRefObject<NavigationContainerRef> = useRef();
+
+  useEffect(() => {
+    NfcManager.start()
+      .then(() => console.log('✅ NFC listo'))
+      .catch(err => console.warn('❌ Error iniciando NFC', err));
+  }, []);
+  
 
   useEffect(() => {
     getSettings();
