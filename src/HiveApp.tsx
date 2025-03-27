@@ -2,44 +2,44 @@ import {
   NavigationContainer,
   NavigationContainerRef,
 } from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {showFloatingBar} from 'actions/floatingBar';
+import { createStackNavigator } from '@react-navigation/stack';
+import { showFloatingBar } from 'actions/floatingBar';
 import {
   forgetRequestedOperation,
   getSettings,
   getTokensBackgroundColors,
   setRpc as setRpcAction,
 } from 'actions/index';
-import {Rpc} from 'actions/interfaces';
-import {setDisplayChangeRpcPopup, setSwitchToRpc} from 'actions/rpc-switcher';
+import { Rpc } from 'actions/interfaces';
+import { setDisplayChangeRpcPopup, setSwitchToRpc } from 'actions/rpc-switcher';
 import Bridge from 'components/bridge';
-import {MessageModal} from 'components/modals/MessageModal';
+import { MessageModal } from 'components/modals/MessageModal';
 import RpcSwitcherComponent from 'components/popups/rpc-switcher/rpc-switcher.component';
-import {getToggleElement} from 'hooks/toggle';
+import { getToggleElement } from 'hooks/toggle';
 import MainDrawer from 'navigators/MainDrawer';
 import SignUpStack from 'navigators/SignUp';
 import UnlockStack from 'navigators/Unlock';
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import RNBootSplash from 'react-native-bootsplash';
 import Orientation from 'react-native-orientation-locker';
-import {ConnectedProps, connect} from 'react-redux';
+import { ConnectedProps, connect } from 'react-redux';
 import Modal from 'screens/Modal';
 import {
   DEFAULT_ACCOUNT_HISTORY_RPC_NODE,
   DEFAULT_HE_RPC_NODE,
 } from 'screens/hive/settings/RpcNodes';
-import {FloatingBar} from 'screens/hive/wallet/FloatingBar';
-import {RootState} from 'store';
-import {logScreenView} from 'utils/analytics';
-import {setRpc} from 'utils/hive';
-import {HiveEngineConfigUtils} from 'utils/hive-engine-config.utils';
-import {processQRCodeOp} from 'utils/hive-uri';
-import setupLinking, {clearLinkingListeners} from 'utils/linking';
-import {modalOptions, noHeader, setNavigator} from 'utils/navigation';
-import {useWorkingRPC} from 'utils/rpc-switcher.utils';
-import {checkRpcStatus} from 'utils/rpc.utils';
-import {ModalNavigationRoute, RootStackParam} from './navigators/Root.types';
-import {FLOATINGBAR_ALLOWED_SCREENS} from './reference-data/FloatingScreenList';
+import { FloatingBar } from 'screens/hive/wallet/FloatingBar';
+import { RootState } from 'store';
+import { logScreenView } from 'utils/analytics';
+import { setRpc } from 'utils/hive';
+import { HiveEngineConfigUtils } from 'utils/hive-engine-config.utils';
+import { processQRCodeOp } from 'utils/hive-uri';
+import setupLinking, { clearLinkingListeners } from 'utils/linking';
+import { modalOptions, noHeader, setNavigator } from 'utils/navigation';
+import { useWorkingRPC } from 'utils/rpc-switcher.utils';
+import { checkRpcStatus } from 'utils/rpc.utils';
+import { ModalNavigationRoute, RootStackParam } from './navigators/Root.types';
+import { FLOATINGBAR_ALLOWED_SCREENS } from './reference-data/FloatingScreenList';
 const Root = createStackNavigator<RootStackParam>();
 let rpc: string | undefined = '';
 
